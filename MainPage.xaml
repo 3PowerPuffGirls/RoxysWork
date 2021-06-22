@@ -1,0 +1,132 @@
+﻿<Page
+    x:Class="MyPhotoLibraryApp_practice_.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MyPhotoLibraryApp_practice_"
+    xmlns:model="using:MyPhotoLibraryApp_practice_.Model"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <RelativePanel Grid.Row="2"
+                       VerticalAlignment="Bottom">
+            <Button Name="AllImagesButton"
+                    Click="AllImagesButton_Click"
+                    Margin="50,0,50,0"
+                    RelativePanel.AlignRightWithPanel="True"
+                    Height="100"
+                    Width="200"
+                    FontSize="30"
+                    FontFamily="Verdana"
+                    FontWeight="ExtraBlack"
+                    Background="Transparent">All Images</Button>
+            <Button Name="NewAlbumButton"
+                    Click="NewAlbumButton_Click"
+                    Margin="20,0,20,0"
+                    RelativePanel.RightOf="FoodButton"
+                    Height="100"
+                    FontSize="30"
+                    Background="Transparent"
+                    Width="200">
+                <Image Source="/Assets/PhotoApp/New/Icon.jpg"/>
+            </Button>
+            <Button Name="AnimalsButton"
+                    Click="AnimalsButton_Click"
+                    Margin="20,0,20,0"
+                    RelativePanel.RightOf="PeopleButton"
+                    Height="100"
+                    FontSize="30"
+                    Background="Transparent"
+                    Width="200">
+                <Image Source="/Assets/PhotoApp/Animals/Icon.jpg"/>
+            </Button>
+            <Button Name="FoodButton"
+                    Click="FoodButton_Click"
+                    Margin="20,0,20,0"
+                    Height="100"
+                    Width="200"
+                    FontSize="30"
+                    Background="Transparent"
+                    RelativePanel.RightOf="AnimalsButton">
+                <Image Source="/Assets/PhotoApp/Food/Icon.jpg"/>
+            </Button>
+            <Button Name="PeopleButton"
+                    Click="PeopleButton_Click"
+                    Margin="20,0,20,0"
+                    Height="100"
+                    Width="200"
+                    FontSize="29"
+                    Background="Transparent"
+                    RelativePanel.RightOf="SceneryButton">
+                <Image Source="/Assets/PhotoApp/People/Icon.jpg"></Image>
+            </Button>
+            <Button Name="SceneryButton"
+                    Click="SceneryButton_Click"
+                    Margin="20,0,20,0"
+                    Height="100"
+                    Width="200"
+                    FontSize="29"
+                    Background="Transparent">
+                <Image Source="/Assets/PhotoApp/Scenery/Icon.jpg"></Image>
+            </Button>
+        </RelativePanel>
+        <Button Grid.Row="0"
+                Name="AlbumsButton"
+                Height="60"
+                Width="102"
+                Content="Albums"
+                FontSize="25"
+                Click="AlbumsButton_Click"/>
+        <Button Grid.Row="0"
+                Name="PlusButton"
+                Height="60"
+                Width="100"
+                HorizontalAlignment="Right"
+                FontFamily="Segoe MDL2 Assets"
+                Content="&#xE710;"
+                FontSize="30"
+                FontWeight="ExtraBold"
+                Click="PlusButton_Click"/>
+        <RelativePanel Grid.Row="0"
+                       Name="TitlePanel"
+                       Background="DarkGray"
+                       HorizontalAlignment="Center"
+                       Width="1300">
+            <TextBlock Name="TitleTextBlock" 
+                FontSize="50"
+                       RelativePanel.AlignHorizontalCenterWithPanel="True" 
+                       FontFamily="Verdana"
+                       FontWeight="ExtraBlack"> 
+                All Images</TextBlock>
+        </RelativePanel>
+        <ScrollViewer Grid.Row="1" 
+                      Name="ScrollView" 
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled"
+                      VerticalScrollMode="Auto">
+            <GridView Grid.Row="1"
+                  Margin="50,0,0,0"
+                  Name="ImageGridView"
+                  SelectionMode="Multiple"
+                  ItemsSource="{x:Bind Photos, Mode=OneWay}" 
+                  IsItemClickEnabled="True" 
+                  ItemClick="ImageGridView_ItemClick">
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Photo">
+                        <Image Name="MyPhoto"
+                               Height="250"
+                               Width="280"
+                               Source="{x:Bind PhotoFile, Mode=OneWay}"/>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+        </ScrollViewer>
+    </Grid>
+</Page>

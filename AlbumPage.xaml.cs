@@ -1,69 +1,18 @@
-﻿using MyPhotoLibraryApp_practice_.Model;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
+<Page
+    x:Class="MyPhotoLibraryApp_practice_.AlbumPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MyPhotoLibraryApp_practice_"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:model="using:MyPhotoLibraryApp_practice_.Model"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-
-namespace MyPhotoLibraryApp_practice_
-{
-    public sealed partial class AlbumPage : Page
-    {
-
-        private ObservableCollection<Photo> Photos;
-        public List<Album> AlbumCover;
-
-        public AlbumPage()
-        {
-            this.InitializeComponent();
-
-            AlbumCover = new List<Album>
-            {
-                new Album
-                {
-                    AlbumName = PhotoCategory.Animals,
-                    AlbumIcon = "/Assets/PhotoApp/Animals/Icon.png"
-                },
-                new Album
-                {
-                    AlbumName = PhotoCategory.Food,
-                    AlbumIcon = "/Assets/PhotoApp/Food/Icon.png"
-                },
-                new Album
-                {
-                    AlbumName = PhotoCategory.People,
-                    AlbumIcon = "/Assets/PhotoApp/People/Icon.png"
-                },
-                new Album
-                {
-                    AlbumName = PhotoCategory.Scenery,
-                    AlbumIcon = "/Assets/PhotoApp/Scenery/Icon.png"
-                }
-            };
-        }
-
-        private void BackButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(MainPage));
-        }
-
-        MainPage MainPage = new MainPage();
-        List<Album> album = new List<Album>();
-
-        private void AlbumsListView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-
-        }
-    }
-}
+    <Grid Background="MediumSeaGreen">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+    </Grid>
+</Page>

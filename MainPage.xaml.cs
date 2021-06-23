@@ -1,4 +1,4 @@
-﻿using MyPhotoLibraryApp_practice_.Model;
+using MyPhotoLibraryApp_practice_.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,77 +20,37 @@ using static Album;
 namespace MyPhotoLibraryApp_practice_
 {    public sealed partial class MainPage : Page
     {
-        private ObservableCollection<Photo> Photos;
-        
-
 
         public MainPage()
         {
             this.InitializeComponent();
-            Photos = new ObservableCollection<Photo>();
-            PhotoManager.GetAllPhotos(Photos);
-            AllImagesButton.Visibility = Visibility.Collapsed;
-
-            
+            MainFrame.Content = new UploadImages();
+            BackItm.Visibility = Visibility.Collapsed;
         }
-
-   
-        private void AllImagesButton_Click(object sender, RoutedEventArgs e)
+        public bool CanGoBack { get; }
+        private void BackItm_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            PhotoManager.GetAllPhotos(Photos);
-            AllImagesButton.Visibility = Visibility.Collapsed;
-            TitleTextBlock.Text = "All Images";
-
+            MainFrame.Content = new UploadImages();
         }
 
-        private void AnimalsButton_Click(object sender, RoutedEventArgs e)
+        private void AlbumsItm_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            PhotoManager.GetPhotosByCategory(Photos, PhotoCategory.Animals);
-            AllImagesButton.Visibility = Visibility;
-            TitleTextBlock.Text = "Animals";
+            MainFrame.Content = new AlbumPage();
+            BackItm.Visibility = Visibility.Visible;
         }
 
-        private void FoodButton_Click(object sender, RoutedEventArgs e)
+        private void EditItm_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            PhotoManager.GetPhotosByCategory(Photos, PhotoCategory.Food);
-            AllImagesButton.Visibility = Visibility;
-            TitleTextBlock.Text = "Food";
+            BackItm.Visibility = Visibility.Visible;
 
         }
 
-        private void PeopleButton_Click(object sender, RoutedEventArgs e)
+        private void AlbumsNewFlyout_Click(object sender, RoutedEventArgs e)
         {
-            PhotoManager.GetPhotosByCategory(Photos, PhotoCategory.People);
-            AllImagesButton.Visibility = Visibility;
-            TitleTextBlock.Text = "People";
 
         }
 
-        private void ImageGridView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            //var photo = (Photo)e.ClickedItem;
-
-        }
-
-        private void SceneryButton_Click(object sender, RoutedEventArgs e)
-        {
-            PhotoManager.GetPhotosByCategory(Photos, PhotoCategory.Scenery);
-            AllImagesButton.Visibility = Visibility;
-            TitleTextBlock.Text = "Scenery";
-
-        }
-
-        private void AlbumsButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(AlbumPage));
-        }
-
-        private void PlusButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(UploadImages));
-        }
-
-        private void NewAlbumButton_Click(object sender, RoutedEventArgs e)
+        private void AlbumsEditFlyout_Click(object sender, RoutedEventArgs e)
         {
 
         }

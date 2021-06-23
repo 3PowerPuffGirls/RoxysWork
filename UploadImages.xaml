@@ -1,67 +1,26 @@
-﻿<Page
+<Page
     x:Class="MyPhotoLibraryApp_practice_.UploadImages"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MyPhotoLibraryApp_practice_"
+    xmlns:model="using:MyPhotoLibraryApp_practice_.Model"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <RelativePanel Grid.Row="0"
-                       Name="TitlePanel"
-                       Background="DarkGray"
-                       HorizontalAlignment="Center"
-                       Width="1300">
-            <TextBlock Name="TitleTextBlock" 
-                FontSize="50"
-                       RelativePanel.AlignHorizontalCenterWithPanel="True" 
-                       FontFamily="Verdana"
-                       FontWeight="ExtraBlack"> 
-                Edit Your Image</TextBlock>
-        </RelativePanel>
-        <Button Grid.Row="0"
-                Name="BackButton"
-                Height="60"
-                Width="100"
-                Content="Back"
-                FontSize="25"
-                IsEnabled="True"
-                Click="BackButton_Click"/>
-        <StackPanel Grid.Row="1"
-                    Margin="10"
-                    HorizontalAlignment="Center">
-            <Image Name="UploadImageArea"
-                Width="600"
-                       Height="400"/>
-            <Button Name="OpenFile"
-                    Click="OpenFile_Click"
-                    Height="50"
-                    Width="160"
-                    FontFamily="Verdana"
-                    FontSize="25">Upload File</Button>
-            <TextBlock Name="FileTextBlock"
-                       FontSize="25"/>
-            <Button Name="AlbumAddButton"
-                    HorizontalAlignment="Right"
-                    Click="AlbumAddButton_Click"
-                    Height="50"
-                    Width="250"
-                    FontFamily="Verdana"
-                    FontSize="25">Add To Album</Button>
-            <Button Name="NewAlbumButton"
-                    Margin="0,10,0,0"
-                    HorizontalAlignment="Right"
-                    Click="NewAlbumButton_Click"
-                    Height="50"
-                    Width="250"
-                    FontFamily="Verdana"
-                    FontSize="24">Create New Album</Button>
-        </StackPanel>
+        <GridView Name="AllPhotosGrid"
+                  IsTapEnabled="True"
+                  ItemsSource="{x:Bind photos}"
+                  Background="LightBlue">
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="model:Photo">
+                    <Image Name="PhotoImage"
+                           Width="200"
+                           Source="{x:Bind PhotoThumbnail}"/>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
     </Grid>
 </Page>

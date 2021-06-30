@@ -1,24 +1,73 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BudgetMobileApp.MainPage">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:model="clr-namespace:BudgetMobileApp.Model"
+             x:Class="BudgetMobileApp.MainPage"
+             BackgroundImageSource="C:\Users\mrsro\OneDrive\Documents\GitHub\BudgetMobileApp\BudgetMobileApp\BudgetMobileApp\Assets\Wall Mural Abstract.jpg"
+             Padding="0,10,0,0"
+             >
+  <ContentPage.Content>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Image Grid.Row="1" 
+               Source="Assets\BudgetIcon.jpg"/>
 
-    <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-        </Frame>
-        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
-        <Label FontSize="16" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
+
+        <Label Grid.Row="0"
+               Text="Budget App"
+               FontFamily="Verdana"
+               FontAttributes="Bold"
+               FontSize="30"
+               HorizontalOptions="CenterAndExpand">
+           
         </Label>
-    </StackLayout>
-
+        <ListView Grid.Row="1">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Expense">
+                        <ImageCell Text="{Binding Name}"
+                                   Detail="{Binding Amount}"
+                                   ImageSource="BudgetIcon.jpg"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+        </ListView>
+            <StackLayout Grid.Row="2"
+                         x:Name="MonthlyGoalStack"
+                         Orientation="Horizontal">
+                <Entry x:Name="BudgetEntry"
+                       Margin="10,0,0,0"
+                       WidthRequest="300"
+                       FontFamily="Verdana"
+                       FontSize="20"
+                       Placeholder="Enter Your Monthly Goal"/>
+                       
+                <Button x:Name="BudgetEnterBtn"
+                        Text="Submit"
+                        Clicked="BudgetEnterBtn_Clicked"/>
+            </StackLayout>
+        
+            <StackLayout Orientation="Horizontal"
+                     Grid.Row="3"
+                     Margin="10,0,0,0">
+            <Button x:Name="ExpenseBtn"
+                    Text="Add An Expense"
+                    FontFamily="Verdana"
+                    FontSize="20"
+                    BackgroundColor="DarkGray"
+                    Clicked="ExpenseBtn_Clicked"/>
+            <Button x:Name="BudgetBtn"
+                    Text="Edit Budget"
+                    WidthRequest="200"
+                    FontFamily="Verdana"
+                    FontSize="20"
+                    BackgroundColor="DarkGray"
+                    Clicked="BudgetBtn_Clicked"/>
+        </StackLayout>
+                      
+    </Grid>
+  </ContentPage.Content>
 </ContentPage>

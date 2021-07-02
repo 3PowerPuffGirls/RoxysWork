@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:model="clr-namespace:BudgetMobileApp.Model"
              x:Class="BudgetMobileApp.MainPage"
-             BackgroundImageSource="C:\Users\mrsro\OneDrive\Documents\GitHub\BudgetMobileApp\BudgetMobileApp\BudgetMobileApp\Assets\Wall Mural Abstract.jpg"
+             xmlns:local="clr=namespace:BudgetMobileApp"
              Padding="0,10,0,0"
+             BackgroundColor="Beige"
              >
   <ContentPage.Content>
     <Grid>
@@ -14,24 +15,16 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Image Grid.Row="1" 
-               Source="Assets\BudgetIcon.jpg"/>
-
-
-        <Label Grid.Row="0"
-               Text="Budget App"
-               FontFamily="Verdana"
-               FontAttributes="Bold"
-               FontSize="30"
-               HorizontalOptions="CenterAndExpand">
-           
-        </Label>
-        <ListView Grid.Row="1">
+            <Label  Text="Budget App"
+                       FontFamily="Verdana"
+                       FontAttributes="Bold"
+                       Margin="100,10,0,0"
+                       FontSize="30"/>
+            <ListView Grid.Row="1">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:Expense">
                         <ImageCell Text="{Binding Name}"
-                                   Detail="{Binding Amount}"
-                                   ImageSource="BudgetIcon.jpg"/>
+                                   Detail="{Binding Amount}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
         </ListView>
@@ -44,7 +37,6 @@
                        FontFamily="Verdana"
                        FontSize="20"
                        Placeholder="Enter Your Monthly Goal"/>
-                       
                 <Button x:Name="BudgetEnterBtn"
                         Text="Submit"
                         Clicked="BudgetEnterBtn_Clicked"/>

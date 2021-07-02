@@ -11,6 +11,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\BudgetIcon.jpg" />
+    <None Remove="Assets\DiningIcon.png" />
+    <None Remove="Assets\EntertainmentIcon.png" />
+    <None Remove="Assets\GroceriesIcon.png" />
+    <None Remove="Assets\RetailIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\BudgetIcon.jpg" />
+    <EmbeddedResource Include="Assets\DiningIcon.png" />
+    <EmbeddedResource Include="Assets\EntertainmentIcon.png" />
+    <EmbeddedResource Include="Assets\GroceriesIcon.png" />
+    <EmbeddedResource Include="Assets\RetailIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>

@@ -12,12 +12,16 @@ namespace BudgetMobileApp
 {
     public partial class MainPage : ContentPage
     {
-
+        
+        
         public MainPage()
         {
             InitializeComponent();
             BudgetBtn.IsVisible = false;
+
         }
+
+        private static double Budget = 0;
 
         private async void ExpenseBtn_Clicked(object sender, EventArgs e)
         {
@@ -27,13 +31,15 @@ namespace BudgetMobileApp
 
         private void BudgetBtn_Clicked(object sender, EventArgs e)
         {
-            //await Navigation.PushModalAsync(new Budget());
+            
         }
 
         private void BudgetEnterBtn_Clicked(object sender, EventArgs e)
         {
             BudgetBtn.IsVisible = true;
             MonthlyGoalStack.IsVisible = false;
+            Budget = double.Parse(BudgetEntry.Text);
+            BudgetManager.UserBudget = Budget;
         }
     }
 }

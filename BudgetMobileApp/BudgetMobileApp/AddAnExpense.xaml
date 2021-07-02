@@ -17,24 +17,20 @@
                        VerticalOptions="CenterAndExpand" 
                        HorizontalOptions="CenterAndExpand" />
                 <Entry x:Name="UserExpenseEntryName"
-                       Placeholder="Name"/>
+                       Placeholder="Name"
+                       Text="{Binding expense.Name}"/>
                 <Entry x:Name="UserExpenseEntryAmount"
-                       Placeholder="Amount"/>
-                <Entry x:Name="UserExpenseEntryDate"
-                       Placeholder="Date"/>
+                       Placeholder="Amount"
+                       Text="{Binding expense.Amount}"/>
+                <DatePicker x:Name="ExpenseDatePicker"
+                            Date="{Binding expense.Date}"/>
                 <Label x:Name="CategoryLabel"/>
                 <StackLayout>
                     <Picker x:Name="CategoryPicker"
-                            Title="Select A Category">
-                        <Picker.ItemsSource>
-                            <x:Array Type="{x:Type x:String}">
-                                <x:String>Essentials</x:String>
-                                <x:String>Dining</x:String>
-                                <x:String>Entertainment</x:String>
-                                <x:String>Retail</x:String>
-                                <x:String>Bills</x:String>
-                            </x:Array>
-                        </Picker.ItemsSource>
+                            Title="Select A Category"
+                            ItemsSource="{Binding CategoryItems}"
+                            ItemDisplayBinding="{Binding Name}"
+                            SelectedIndexChanged="CategoryPicker_SelectedIndexChanged">
                     </Picker>
                 </StackLayout>
                 <Button Text="Done"
@@ -42,6 +38,11 @@
                         FontFamily="Verdana"
                         FontSize="20"
                         Clicked="ExpenseDoneBtn_Clicked"/>
+                <Button Text="Cancel"
+                        x:Name="ExpenseCancelBtn"
+                        FontFamily="Verdana"
+                        FontSize="20"
+                        Clicked="ExpenseCancelBtn_Clicked"/>
             </StackLayout>
         </Grid>
         
